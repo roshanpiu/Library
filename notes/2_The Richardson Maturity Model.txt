@@ -1,0 +1,20 @@
+### The Richardson Maturity Model
+
+## Level 0 (The Swamp of POX)
+#  HTTP protocol is used for remote interaction
+#  The rest of the protocol is not used as it should be 
+#  HTTP is used only as a transpotation protocol
+#  ex- POST (info in data http://host/api)
+#  ex- POST (author to create http://host/api)
+
+## Level 1 (Resources)
+# Each resource is mapped to a URI 
+# But correct HTTP verbs are not used
+
+## Level 2 (Verbs)
+# Correct verbs are used
+# Correct status codes are used
+
+## Level 3 (Hypermedia)
+# The API supports HATEOAS
+# Introduces discoverability

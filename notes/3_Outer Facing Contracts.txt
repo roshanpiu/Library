@@ -1,0 +1,15 @@
+### Structuring outer facing contract
+
+# Recource identifier
+# HTTP Method
+# Payload (Media types)
+
+## Recource Naming best practices
+# Recource names must be nouns not actions
+ex - GET api/authors
+     GET api/authors/{authorId}
+     GET api/authors/{authorId}/books
+     GET api/authors/{authorId}/books/{bookId}
+
+## RPC style calls
+ex - api/authors/{authorId}/totalamountofpages

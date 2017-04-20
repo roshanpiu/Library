@@ -1,0 +1,55 @@
+## REST
+
+Representational State Transfer is intended to evoke an image of how a well designed web application behaves
+
+a network of web pages(a virtual state-machine)
+
+where the user progresse through an application by selecting links(state transitions)
+
+resulting in the next page (representing the state of the application) beign transfered to the user and rendered for their use
+
+## REST is an architectural style, not a standard - we use standards to implement it
+
+## REST is protocol agnostic
+
+### REST (Representational State Transfer)
+
+## URI identifies where resource lives
+## Browser sends a request to the URI, Server does something and sends a HTTP Response back to client
+## That Response shows the state we have navigated to here the Browser has changed the state
+## The client changes state based on the represention of the resource that we are accessing
+
+### REST Constraints
+
+1 ## client and server 
+# the client shouldn't be concerened about how the data is stored in server
+# the server shouldn't be concerened about the user interface or how client is implemented
+# the client and server should be able to evolve seperately
+
+2 ## Statelessness
+The neccesarry state needed to handle every request contains with in the request it self (state contains within the request)
+
+3 ## Cacheable
+# each response message must exlicitly state if it can be cached or not
+
+4 ## Layered System (the REST System can be compromised of multiple architectural layers)
+
+5 ## Code on Demand (Server can extend or customize client functionality (ex - send js to client))
+
+6 ## Uniform Interface
+# The API and consumers of the API should share one technical interface (URI, Method, Media Type)
+
+6.1 ## Identification of resources - individual resources are identified using URIs
+# Representation media types: application/json, application/xml, custom
+
+6.2 ## Manipulation of resources through representions
+# Representation + metadata should be sufficient to modify or delete the resource
+# If the API supports deleting the resource the response could include the URI to the author resource
+
+6.3 ## Self-descriptive message
+# Each message must include enough info to describe how to process the message
+# Ex - if the message includes json in it's body the response should specify that
+
+6.4 ## HATEOAS (Hypermedia as the Engine of Application State)
+# Drives how to consume and use the API
+# Self document the API - helps clients to add functionality

@@ -1,0 +1,16 @@
+### Method Safety and Method Idempotency
+ 
+## Method Safety
+#  Method is considered safe when it doesn't change the recource representation
+
+## Method Idempotency
+#  A Method is considered Idempotent when it can be called multiple times with the same result
+
+HTTP Method     Safe?       Idempotent?
+GET             yes         yes
+OPTIONS         yes         yes
+HEAD            yes         yes
+POST            no          no
+DELETE          no          yes
+PUT             no          yes
+PATCH           no          no
