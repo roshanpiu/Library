@@ -1,0 +1,13 @@
+### Defered Execution
+Defered Execution means query execution occures some time after the query has been constructed
+
+## Query variable stores query commands
+## Execution is deffered until the query is iterated over
+
+IQueryable<T>: creates an expression tree
+The query is not sent to the datastore until the iteration happens
+
+Iteration:
+    foreach loop
+    ToList(), ToArray(), ToDictionary(),
+    Singleton queries - Max(), Count()
