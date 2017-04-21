@@ -1,0 +1,11 @@
+### Repository Pattern
+An abstraction that reduces complexity and aims to make the code, safe for the repository implementation
+persistence ignorant
+
+## Advantages
+# Less code duplication
+# Less error-prone code
+# Better testability of the consuming class
+
+# Switching out the persistence technology is not the main purpose
+# Choosing the best persistence technology for each repository method is the main purpose

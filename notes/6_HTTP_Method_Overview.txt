@@ -1,0 +1,50 @@
+### HTTP Method Overview
+
+## Reading Resources
+    GET api/authors
+    200 [{author},{author}], 404
+
+    GET api/authors/{authorId}
+    200 {author}, 404
+
+## Deleting Resources
+    DELETE api/authors/{authorId}
+    204, 404
+
+    DELETE api/authors
+    204, 404
+    Rarely implemented
+
+## Creating Resources (server)
+    POST api/authors - {author}
+    201 {author}, 404
+
+    POST api/authors/{authorId} can never be successful
+    404 or 409
+
+    # Create a new resource for adding a collection in one go
+    POST api/authorCollection - {authorCollection}
+    201 {authorCollection}, 404
+
+    # Creating a Resource (consumer)
+    PUT api/authors/{authorId} - {author}
+    201 {author}
+
+    PATCH api/authors/{authorId} - {JsonPatchDocument on author}
+    201 {author}
+
+## Updating resources (full)
+    PUT api/authors/{authorId} - {author}
+    200 {author}, 204, 404
+
+    PUT api/authors - [{author}, {author}]
+    200 [{author}, {author}], 204, 404
+    Rarely implemented
+
+## Updating Resources (partial)
+    PATCH api/authors/{authorId} - {JsonPatchDocument on author}
+    200 {author}, 204, 404
+
+    PATCH api/authors - {JsonPatchDocument on author}
+    200 [{author}, {author}], 204, 404
+    Rarely implemented

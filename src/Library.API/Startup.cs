@@ -13,6 +13,8 @@ using Library.API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Library.API.Helpers;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Diagnostics;
+using NLog.Extensions.Logging;
 
 namespace Library.API
 {
@@ -55,6 +57,8 @@ namespace Library.API
             ILoggerFactory loggerFactory, LibraryContext libraryContext)
         {
             loggerFactory.AddConsole();
+            loggerFactory.AddDebug(LogLevel.Information);
+            loggerFactory.AddNLog();
 
             if (env.IsDevelopment())
             {
@@ -66,6 +70,14 @@ namespace Library.API
                 {
                     appBuilder.Run(async context =>
                     {
+                        var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
+
+                        if(exceptionHandlerFeature != null)
+                        {
+                            var logger = loggerFactory.CreateLogger("Global exception logger");
+                            logger.LogError(500, exceptionHandlerFeature.Error, exceptionHandlerFeature.Error.Message);
+                        }
+
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync("An unexpected error happened, Try again later.");
                     });
@@ -81,6 +93,8 @@ namespace Library.API
                 cfg.CreateMap<Entities.Book, Models.BookDto>();
                 cfg.CreateMap<Models.AuthorForCreationDto, Entities.Author>();
                 cfg.CreateMap<Models.BookForCreationDto, Entities.Book>();
+                cfg.CreateMap<Models.BookForUpdateDto, Entities.Book>();
+                cfg.CreateMap<Entities.Book, Models.BookForUpdateDto>();
             });
 
             libraryContext.EnsureSeedDataForContext();

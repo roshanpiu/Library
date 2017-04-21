@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Library.API.Controllers
 {
+    [Route("api/authorcollections")]
     public class AuthorCollectionsController : Controller
     {
         private ILibraryRepository _libraryRepository;
@@ -21,12 +22,16 @@ namespace Library.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAuthorCollection(
-            [FromBody] IEnumerable<AuthorForCreationDto> authorCollection)
+        public IActionResult CreateAuthorCollection([FromBody] IEnumerable<AuthorForCreationDto> authorCollection)
         {
             if (authorCollection == null)
             {
                 return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return new UnprocessableEntityObjectResult(ModelState);
             }
 
             var authorEntities = Mapper.Map<IEnumerable<Author>>(authorCollection);
